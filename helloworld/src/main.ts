@@ -86,34 +86,47 @@ let sound: THREE.Audio;
 
 // Toggle music playback
 const musicButton = document.getElementById('musicButton');
-let isPlaying = false;
+const volumeControl = document.getElementById('volumeControl') as HTMLInputElement;
 
-musicButton.addEventListener('click', () => {
-    if (!listener) {
-        listener = new THREE.AudioListener();
-        camera.add(listener);
-        sound = new THREE.Audio(listener);
+if (musicButton) {
+    let isPlaying = false;
 
-        const audioLoader = new THREE.AudioLoader();
-        audioLoader.load('绝地反击.mp3', function(buffer) {
-            sound.setBuffer(buffer);
-            sound.setLoop(true);
-            sound.setVolume(0.5);
-            sound.play();
-            musicButton.textContent = 'Pause Music';
-            isPlaying = true;
-        });
-    } else {
-        if (isPlaying) {
-            sound.pause();
-            musicButton.textContent = 'Play Music';
+    musicButton.addEventListener('click', () => {
+        if (!listener) {
+            listener = new THREE.AudioListener();
+            camera.add(listener);
+            sound = new THREE.Audio(listener);
+
+            const audioLoader = new THREE.AudioLoader();
+            audioLoader.load('绝地反击.mp3', function(buffer) {
+                sound.setBuffer(buffer);
+                sound.setLoop(true);
+                sound.setVolume(parseFloat(volumeControl.value)); // Set initial volume
+                sound.play();
+                musicButton.textContent = 'Pause Music';
+                isPlaying = true;
+            });
         } else {
-            sound.play();
-            musicButton.textContent = 'Pause Music';
+            if (isPlaying) {
+                sound.pause();
+                musicButton.textContent = 'Play Music';
+            } else {
+                sound.play();
+                musicButton.textContent = 'Pause Music';
+            }
+            isPlaying = !isPlaying;
         }
-        isPlaying = !isPlaying;
-    }
-});
+    });
+}
+
+// Volume control
+if (volumeControl) {
+    volumeControl.addEventListener('input', () => {
+        if (sound) {
+            sound.setVolume(parseFloat(volumeControl.value));
+        }
+    });
+}
 
 // Scrolling
 function moveCamera() {

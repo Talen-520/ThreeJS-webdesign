@@ -1,7 +1,7 @@
 declare module 'three/examples/jsm/controls/OrbitControls' {
-    import { Camera, MOUSE, Object3D, TOUCH, Vector3 } from 'three';
+    import { Camera, EventDispatcher, MOUSE, Vector3 } from 'three';
 
-    export class OrbitControls {
+    export class OrbitControls extends EventDispatcher {
         constructor(object: Camera, domElement?: HTMLElement);
 
         object: Camera;
@@ -34,6 +34,7 @@ declare module 'three/examples/jsm/controls/OrbitControls' {
 
         enablePan: boolean;
         panSpeed: number;
+
         screenSpacePanning: boolean;
         keyPanSpeed: number;
 
@@ -41,9 +42,8 @@ declare module 'three/examples/jsm/controls/OrbitControls' {
         autoRotateSpeed: number;
 
         enableKeys: boolean;
-        keys: { LEFT: number; UP: number; RIGHT: number; BOTTOM: number; };
-        mouseButtons: { LEFT: MOUSE; MIDDLE: MOUSE; RIGHT: MOUSE; };
-        touches: { ONE: TOUCH; TWO: TOUCH; };
+        keys: { LEFT: number; UP: number; RIGHT: number; BOTTOM: number };
+        mouseButtons: { LEFT: MOUSE; MIDDLE: MOUSE; RIGHT: MOUSE };
 
         update(): boolean;
 
@@ -57,7 +57,7 @@ declare module 'three/examples/jsm/controls/OrbitControls' {
 
         getAzimuthalAngle(): number;
 
-        // Event Dispatcher mixins
+        // EventDispatcher mixins
         addEventListener(type: string, listener: (event: any) => void): void;
 
         hasEventListener(type: string, listener: (event: any) => void): boolean;
