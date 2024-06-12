@@ -21,13 +21,13 @@ main {
   width: 100vw;
   color: white;
   z-index: 99;
-  position: absolute;
+  position: absolute; /* position have to be absolute for scrolling*/
   width: 100%;
   margin: 0px auto;
   padding: 120px 0px;
   
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(12, 1fr); /* 12 column with 1 fractional unit*/
 }
 
 h1, h2, h3, blockquote {
