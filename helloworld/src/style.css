@@ -79,3 +79,16 @@ canvas {
   .left {
     grid-column: 6 / 12;
   }
+
+
+  #musicButton {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+  }
