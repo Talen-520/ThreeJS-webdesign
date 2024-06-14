@@ -163,3 +163,4 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     controls.update(); // Update controls on resize
 });
+

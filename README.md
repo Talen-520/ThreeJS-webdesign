@@ -1,10 +1,9 @@
 # ThreeJS-webdesign
 
-npm init @vitejs/app
-
+npm create vite@latest
 -> [projectname]
 -> vanilla
--> javascript
+-> javascript | typescript
 
 for typescript, install extra type definitions
 
